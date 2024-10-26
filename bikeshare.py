@@ -11,21 +11,21 @@ MONTHS = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'augus
 DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 
 def get_filters():
-    print('Hello! Welcome to the US bikeshare data exploration tool!')
-    city = input('Which city\'s data would you like to explore: Chicago, New York City, or Washington?\n').strip().lower()
+    print('Welcome to the US bikeshare data exploration tool!')
+    city = input('Please select a city (Chicago, New York City, Washington):\n').strip().lower()
     while city not in CITY_DATA:
-        print('Invalid input. Please enter one of the following cities: Chicago, New York City, or Washington.')
-        city = input('Which city\'s data would you like to explore: Chicago, New York City, or Washington?\n').strip().lower()
+        print('Invalid city. Choose from: Chicago, New York City, Washington.')
+        city = input('Please select a city:\n').strip().lower()
 
-    month = input("Which month would you like to filter by? You can enter a month name (e.g., January) or number (e.g., 1) or type 'all' for no filter:\n").strip().lower()
+    month = input("Select a month (e.g., January) or type 'all' for no filter:\n").strip().lower()
     while month not in ['all'] + [m[:3] for m in MONTHS] + list(map(str, range(1, 13))):
-        print('Invalid input. Please enter a valid month name, number, or "all".')
-        month = input("Which month would you like to filter by? You can enter a month name (e.g., January) or number (e.g., 1) or type 'all' for no filter:\n").strip().lower()
+        print('Invalid month. Enter a valid month or "all".')
+        month = input("Select a month:\n").strip().lower()
 
-    day = input("Which day of the week would you like to filter by? Enter 'all' for no filter, or specify a day (e.g., Monday or Mon):\n").strip().lower()
+    day = input("Select a day (e.g., Monday) or type 'all' for no filter:\n").strip().lower()
     while day not in ['all'] + [d[:3] for d in DAYS]:
-        print('Invalid input. Please enter a valid day of the week or "all".')
-        day = input("Which day of the week would you like to filter by? Enter 'all' for no filter, or specify a day (e.g., Monday or Mon):\n").strip().lower()
+        print('Invalid day. Enter a valid day or "all".')
+        day = input("Select a day:\n").strip().lower()
 
     print('-'*40)
     return city, month, day
@@ -53,16 +53,16 @@ def load_data(city, month, day):
     return df
 
 def time_stats(df):
-    print('\nCalculating the most frequent times of travel...\n')
+    print('\nCalculating the most common travel times...\n')
     start_time = time.time()
 
     common_month = df['Month'].mode()[0]
     common_day_of_week = df['Day_of_Week'].mode()[0]
     common_start_hour = df['Hour'].mode()[0]
 
-    print(f'The most common month is: {MONTHS[common_month - 1].title()}.')
-    print(f'The most common day of the week is: {common_day_of_week}.')
-    print(f'The most common start hour is: {common_start_hour}.')
+    print(f'Most common month: {MONTHS[common_month - 1].title()}.')
+    print(f'Most common day of the week: {common_day_of_week}.')
+    print(f'Most common start hour: {common_start_hour}.')
 
     print(f"\nCalculation completed in {time.time() - start_time:.2f} seconds.")
     print('-'*40)
@@ -78,11 +78,11 @@ def station_stats(df):
         df['Trip'] = df['Start Station'] + ' to ' + df['End Station']
         common_trip = df['Trip'].mode()[0]
 
-        print(f'The most common start station is: {common_start_station}.')
-        print(f'The most common end station is: {common_end_station}.')
-        print(f'The most common trip is: {common_trip}.')
+        print(f'Most common start station: {common_start_station}.')
+        print(f'Most common end station: {common_end_station}.')
+        print(f'Most common trip: {common_trip}.')
     else:
-        print('No station data available for this dataset.')
+        print('Station data is not available for this dataset.')
 
     print(f"\nCalculation completed in {time.time() - start_time:.2f} seconds.")
     print('-'*40)
@@ -95,10 +95,10 @@ def trip_duration_stats(df):
         total_travel_time = df['Trip Duration'].sum()
         mean_travel_time = df['Trip Duration'].mean()
 
-        print(f'The total travel time is: {total_travel_time}.')
-        print(f'The average travel time is: {mean_travel_time:.2f}.')
+        print(f'Total travel time: {total_travel_time}.')
+        print(f'Average travel time: {mean_travel_time:.2f}.')
     else:
-        print('No trip duration data available for this dataset.')
+        print('Trip duration data is not available for this dataset.')
 
     print(f"\nCalculation completed in {time.time() - start_time:.2f} seconds.")
     print('-'*40)
@@ -119,18 +119,18 @@ def user_stats(df):
         for gender, count in gender_counts.items():
             print(f'  {gender}: {count}')
     else:
-        print('No gender data available for this dataset.')
+        print('Gender data is not available for this dataset.')
 
     if 'Birth Year' in df.columns:
         earliest_birth_year = int(df['Birth Year'].min())
         most_recent_birth_year = int(df['Birth Year'].max())
         most_common_birth_year = int(df['Birth Year'].mode()[0])
         
-        print(f'The earliest birth year is: {earliest_birth_year}.')
-        print(f'The most recent birth year is: {most_recent_birth_year}.')
-        print(f'The most common birth year is: {most_common_birth_year}.')
+        print(f'Earliest birth year: {earliest_birth_year}.')
+        print(f'Most recent birth year: {most_recent_birth_year}.')
+        print(f'Most common birth year: {most_common_birth_year}.')
     else:
-        print('No birth year data available for this dataset.')
+        print('Birth year data is not available for this dataset.')
 
     print(f"\nCalculation completed in {time.time() - start_time:.2f} seconds.")
     print('-'*40)
