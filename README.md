@@ -1,18 +1,28 @@
->**Note**: Please **fork** the current Udacity repository so that you will have a **remote** repository in **your** Github account. Clone the remote repository to your local machine. Later, as a part of the project "Post your Work on Github", you will push your proposed changes to the remote repository in your Github account.
+>**Note**: Please **fork** the current Udacity repository to have a **remote** repository in **your** GitHub account. Clone the remote repository to your local machine. Later, as a part of the project "Post your Work on GitHub," you will push your proposed changes to your GitHub remote repository.
 
 ### Date created
 Created on [INSERT DATE HERE]
 
 ### Project Title
-Bike Share Data Analysis
+Exploring U.S. Bike Share Data
 
 ### Description
-This project explores data from bike share systems in three major cities in the United States—Chicago, New York City, and Washington. Using Python, we import the data and compute descriptive statistics to answer interesting questions related to bike usage. Additionally, an interactive script is created to allow users to explore the data through the terminal by inputting raw data, offering a hands-on experience with the dataset.
+This project provides an in-depth analysis of bike-sharing data from three major U.S. cities: Chicago, New York City, and Washington. Using Python and libraries like NumPy and pandas, this project explores trends and patterns in bike usage, providing insights such as:
+
+- The most common travel times and days of the week.
+- Popular start and end stations.
+- Travel times for each trip.
+- Usage patterns across user demographics.
+
+To make the analysis more interactive, a command-line interface allows users to choose the city and apply filters by month or day to explore targeted insights. This interactivity offers a dynamic way to explore the data based on user input.
 
 ### Files used
-- chicago.csv
-- new_york_city.csv
-- washington.csv
+The analysis is based on the following datasets:
+- **chicago.csv**: Bike-sharing data for Chicago
+- **new_york_city.csv**: Bike-sharing data for New York City
+- **washington.csv**: Bike-sharing data for Washington, D.C.
+
+Each file contains columns on start and end times, trip durations, start and end stations, and user data like gender and birth year (except for Washington, which lacks gender and birth year data).
 
 ### Credits
-This project is part of Udacity's Data Science Nanodegree program.
+This project was developed as part of the Udacity Data Science Nanodegree program. Additionally, guidance on project structure and data exploration was inspired by Udacity’s materials and resources.
